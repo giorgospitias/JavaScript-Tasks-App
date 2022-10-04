@@ -21,6 +21,7 @@ const lineThrough = "lineThrough";
 
 let LIST = [];
 let id = 0;
+
 let running = 0;
 let time = 15;
 
