@@ -131,9 +131,12 @@ function timerInitialValue() {
   seconds.textContent = `${sec}`;
 }
 function refresh() {
+  playBtn.classList.remove("hide");
+  pauseBtn.classList.add("hide");
   time = 15;
   clearInterval(running);
   timerInitialValue();
+  running = 0;
 }
 playBtn.addEventListener("click", startPause);
 pauseBtn.addEventListener("click", startPause);
