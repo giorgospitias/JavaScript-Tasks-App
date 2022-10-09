@@ -23,7 +23,7 @@ let LIST = [];
 let id = 0;
 
 let running = 0;
-let time = 15;
+let time = 1500;
 
 // add to do function
 
@@ -114,7 +114,7 @@ function startPause() {
       // When 0 seconds, stop timer and log out user
       if (time === 0) {
         clearInterval(running);
-        time = 15;
+        //time = 15;
       }
     }, 1000);
   } else {
@@ -133,11 +133,23 @@ function timerInitialValue() {
 function refresh() {
   playBtn.classList.remove("hide");
   pauseBtn.classList.add("hide");
-  time = 15;
+  time = 1500;
   clearInterval(running);
   timerInitialValue();
   running = 0;
 }
+function activeWorkBtn() {
+  workBtn.classList.add("active");
+  breakBtn.classList.remove("active");
+}
+function activeBreakBtn() {
+  workBtn.classList.remove("active");
+  breakBtn.classList.add("active");
+}
+
 playBtn.addEventListener("click", startPause);
 pauseBtn.addEventListener("click", startPause);
 refreshTimerBtn.addEventListener("click", refresh);
+
+workBtn.addEventListener("click", activeWorkBtn);
+breakBtn.addEventListener("click", activeBreakBtn);
