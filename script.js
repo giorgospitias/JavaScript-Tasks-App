@@ -24,6 +24,7 @@ let id = 0;
 
 let running = 0;
 let time = 1500;
+console.log(time);
 
 // add to do function
 
@@ -133,7 +134,7 @@ function timerInitialValue() {
 function refresh() {
   playBtn.classList.remove("hide");
   pauseBtn.classList.add("hide");
-  time = 1500;
+  gitime = 1500;
   clearInterval(running);
   timerInitialValue();
   running = 0;
@@ -141,10 +142,14 @@ function refresh() {
 function activeWorkBtn() {
   workBtn.classList.add("active");
   breakBtn.classList.remove("active");
+  time = 1500;
+  timerInitialValue();
 }
 function activeBreakBtn() {
   workBtn.classList.remove("active");
   breakBtn.classList.add("active");
+  time = 300;
+  timerInitialValue();
 }
 
 playBtn.addEventListener("click", startPause);
