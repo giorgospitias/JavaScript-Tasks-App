@@ -134,7 +134,8 @@ function timerInitialValue() {
 function refresh() {
   playBtn.classList.remove("hide");
   pauseBtn.classList.add("hide");
-  gitime = 1500;
+  const isActive = workBtn.classList.contains("active");
+  time = isActive ? 1500 : 300;
   clearInterval(running);
   timerInitialValue();
   running = 0;
