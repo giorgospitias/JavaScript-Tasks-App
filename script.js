@@ -19,13 +19,37 @@ const uncheck = "fa-circle-thin";
 const lineThrough = "lineThrough";
 // Variables declaration
 
-let LIST = [];
-let id = 0;
+let LIST, id;
 
 let running = 0;
 let time = 1500;
-console.log(time);
 
+// get item from localstorage
+let data = localStorage.getItem("TODO");
+
+// check if data is not empty
+if (data) {
+  LIST = JSON.parse(data);
+  id = LIST.length; // set the id to the last one in the list
+  loadList(LIST); // load the list to the user interface
+} else {
+  // if data isn't empty
+  LIST = [];
+  id = 0;
+}
+
+// load items to the user's interface
+function loadList(array) {
+  array.forEach(function (item) {
+    addToDo(item.name, item.id, item.done, item.trash);
+  });
+}
+
+// clear the local storage
+clear.addEventListener("click", function () {
+  localStorage.clear();
+  location.reload();
+});
 // add to do function
 
 function addToDo(toDo, id, done, trash) {
@@ -62,6 +86,9 @@ function add(event) {
       done: false,
       trash: false,
     });
+
+    // add item to localstorage ( this code must be added where the LIST array is updated)
+    localStorage.setItem("TODO", JSON.stringify(LIST));
 
     id++;
   }
@@ -101,6 +128,9 @@ list.addEventListener("click", function (event) {
   } else if (elementJob == "delete") {
     removeToDo(element);
   }
+
+  // add item to localstorage ( this code must be added where the LIST array is updated)
+  localStorage.setItem("TODO", JSON.stringify(LIST));
 });
 
 //timer part
@@ -143,12 +173,17 @@ function refresh() {
 function activeWorkBtn() {
   workBtn.classList.add("active");
   breakBtn.classList.remove("active");
+
   time = 1500;
   timerInitialValue();
 }
 function activeBreakBtn() {
   workBtn.classList.remove("active");
   breakBtn.classList.add("active");
+  /*if (playBtn.classList.contains("hide")) {
+    playBtn.classList.remove("hide");
+    pauseBtn.classList.add("hide");
+  }*/
   time = 300;
   timerInitialValue();
 }
