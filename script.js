@@ -160,6 +160,8 @@ function timerInitialValue() {
   // In each call, print the remaining time to UI
   minutes.textContent = `${min}`;
   seconds.textContent = `${sec}`;
+  localStorage.setItem("minutes", minutes.textContent);
+  localStorage.getItem(minutes);
 }
 function refresh() {
   playBtn.classList.remove("hide");
